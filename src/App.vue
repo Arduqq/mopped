@@ -3,22 +3,27 @@
       <Header v-bind:owner="owner"
               v-bind:customList="customList"/>
 
+      <BucketListPrompt v-on:add-todo="addTodo"/>
+
       <BucketList v-bind:buckets="buckets"
                   v-bind:owner="owner"
                   v-bind:bucketlistnumber="bucketlistnumber"
                   v-bind:customDescription="customDescription"/>
+
   </div>
 </template>
 
 <script>
-import BucketList from './components/BucketList.vue'
+import BucketList from './components/BucketList.vue';
+import BucketListPrompt from './components/BucketListPrompt.vue'
 import Header from "@/components/Header";
 
 export default {
   name: 'app',
   components: {
     Header,
-    BucketList
+    BucketList,
+    BucketListPrompt
   },
   data() {
     return {
@@ -32,19 +37,19 @@ export default {
         done: true,
       }, {
         title: 'Manila Luzon treffen',
-        id: 192846,
+        id: 292846,
         done: false,
       }, {
         title: 'Den Jakobsweg laufen',
-        id: 192846,
+        id: 192555,
         done: false,
       },{
         title: 'In New York an die richtig falschen Leute geraten',
-        id: 192846,
+        id: 192236,
         done: false,
       },{
         title: 'Ein Videospiel veröffentlichen',
-        id: 192846,
+        id: 176546,
         done: false,
       },{
         title: 'In Drag eine Performance abliefern',
@@ -52,6 +57,14 @@ export default {
         done: false,
       }],
     };
+  },
+  methods: {
+    addTodo(title) {
+      this.buckets.push({
+        title,
+        done: false,
+      });
+    },
   }
 }
 </script>
@@ -66,7 +79,7 @@ export default {
         color: #fcffcc;
 }
     html {
-
+        overflow-x: hidden;
         background-color: #2b2b2b;
     }
 </style>
